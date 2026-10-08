@@ -44,6 +44,7 @@ possibleResults = [1, -1];
 // possibleResults = [1, 2, 2]; // error
 
 // using custom types and objects
+
 type User = {
   name: string;
   age: number | string;
@@ -54,7 +55,7 @@ type User = {
   }
 }
 
-let user: User = {
+let user = {
   name: "Abe",
   age: 26,
   hobbies: ["sports", "cooking"],
@@ -74,10 +75,23 @@ data = {
 
 // enums
 
-enum Role {
-  Admin,
-  Editor,
-  Guest
+// enum Role {
+//   Admin,
+//   Editor,
+//   Guest
+// }
+// let userRole: Role = Role.Admin;
+// userRole = Role.Guest;
+
+
+type Role = "admin" | "editor" | "guest";
+
+let userRole1: Role = "admin";
+userRole1 = "guest";
+
+let possibleResults1: [1 | -1, number];
+possibleResults1 = [1, 5];
+
+function access(role: Role) {
+  // ...
 }
-let userRole: Role = Role.Admin;
-userRole = Role.Guest;
