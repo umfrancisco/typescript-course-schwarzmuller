@@ -12,3 +12,27 @@ function logAndThrow(err: string): never {
   throw new Error(err);
 }
 
+type Func = (val: string) => void;
+
+function performJob(cb: Func) {
+  // ...
+  cb("Job done!");
+}
+
+performJob(log);
+
+type User = {
+  name: string;
+  age: number;
+  greet: () => string;
+};
+
+let user: User = {
+  name: "Max",
+  age: 29,
+  greet: () => {
+    return "Hello";
+  }
+}
+
+user.greet();
