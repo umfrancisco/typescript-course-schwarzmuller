@@ -1,3 +1,7 @@
+import fs from "node:fs";
+
+fs;
+
 let username: string;
 username = "John";
 console.log(username);
