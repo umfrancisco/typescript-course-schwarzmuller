@@ -109,4 +109,35 @@ const sde = new SideDrawerElement("ASD", "right");
 sde;
 // sde.clone("src");
 
+interface Authenticatable {
+  email: string;
+  password: string;
 
+  login(): void;
+  logout(): void;
+}
+
+// as a object type
+let authUser: Authenticatable = {
+  email: "hello@email.com",
+  password: "1234",
+  login() {},
+  logout() {}
+};
+
+
+// as a implementation
+class AuthUser implements Authenticatable {
+
+  constructor(public email: string, public password: string) {
+
+  }
+
+  login(): void {
+    
+  }
+
+  logout(): void {
+
+  }
+}
