@@ -6,13 +6,46 @@ type InvestmentData = {
   duration: number;
 };
 
-function calculateInvestment(data: InvestmentData) {
+type InvestmentResult = {
+  year: string;
+  totalAmount: number;
+  totalContributions: number;
+  totalInterestEarned: number;
+};
+
+type CalculationResult = InvestmentResult[] | string;
+
+function calculateInvestment(data: InvestmentData): CalculationResult {
+  const { initialAmount, annualContribution, expectedReturn, duration } = data;
+  if (initialAmount < 0) {
+    return "Initial investment amount must be at least zero.";
+  }
+  if (duration <= 0) {
+    return "No valid amount of years provided.";
+  }
+  if (expectedReturn < 0 || expectedReturn > 1) {
+    return "Expected return must be at least zero or lesser then one.";
+  }
+  let total = initialAmount;
+  let totalContributions = 0;
+  let totalInterestEarned = 0;
+  
+  const annualResults: InvestmentResult[] = [];
+
+  for (let i = 0; i < duration; i++) {
+    total *= (1 + expectedReturn);
+    totalInterestEarned = total - totalContributions - initialAmount;
+    totalContributions = totalContributions + annualContribution;
+    total += annualContribution;
+    annualResults.push({ year: `Year ${i + 1}`, totalAmount: total, totalContributions, totalInterestEarned });
+  }
+
+  return annualResults;
+}
+
+function printResults(results: CalculationResult) {
   
 }
 
-function printResults(results) {
-
-}
-
-const results = calculateInvestment(0);
+const results = calculateInvestment();
 printResults(results);
